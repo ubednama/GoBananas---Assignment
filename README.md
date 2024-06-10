@@ -2,6 +2,8 @@
 
 This is a simple React application built using Create React App that fetches data from the JSONPlaceholder API and displays it in a responsive way using the Material-UI CSS framework.
 
+[Link](https://go-bananas-ecru.vercel.app/)
+
 ## Features
 
 - Fetches data from the JSONPlaceholder API
