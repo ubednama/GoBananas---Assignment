@@ -8,6 +8,7 @@ import {
   Container,
   Card,
   Typography,
+  Box,
 } from "@mui/material";
 
 const AlbumList = () => {
@@ -34,9 +35,13 @@ const AlbumList = () => {
 
   return (
     <Container
-      sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
     >
-      Albums
       {error ? <Alert severity="error">{error}</Alert> : ""}
       {status === "loading" ? (
         <CircularProgress />
@@ -44,19 +49,15 @@ const AlbumList = () => {
         <Alert severity="error">{error}</Alert>
       ) : data?.pages?.length > 0 ? (
         data.pages.map((page, pageIdx) => (
-          <div key={pageIdx}>
+          <Box key={pageIdx} sx={{ width: "100%" }}>
             {page.albums.map((album) => (
-              <Card
-                key={album.id}
-                variant="outlined"
-                sx={{ maxWidth: 360, mb: 2 }}
-              >
-                <Typography gutterBottom variant="h5" component="div">
+              <Card key={album.id} variant="outlined" sx={{ width: "100%" }}>
+                <Typography gutterBottom variant="h6" component="div">
                   {album.title}
                 </Typography>
               </Card>
             ))}
-          </div>
+          </Box>
         ))
       ) : (
         <Alert severity="info">No albums available</Alert>

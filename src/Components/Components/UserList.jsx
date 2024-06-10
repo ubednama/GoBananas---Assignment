@@ -17,12 +17,9 @@ const UserList = () => {
   const { data, error, status, fetchNextPage, isFetchingNextPage } =
     useInfiniteQuery({
       queryKey: ["users"],
-      queryFn: ({ pageParam }) => fetchUsers({ pageParam }),
-      initialPageParam: 1,
-      getNextPageParam: (lastPage, allPages) => {
-        const nextPage = lastPage.hasNextPage ? allPages.length + 1 : undefined;
-        return nextPage;
-      },
+      queryFn: ({ pageParam = 1 }) => fetchUsers({ pageParam }),
+      getNextPageParam: (lastPage, allPages) =>
+        lastPage.hasNextPage ? allPages.length + 1 : undefined,
     });
 
   const { ref, inView } = useInView();
@@ -38,6 +35,7 @@ const UserList = () => {
       sx={{
         display: "flex",
         alignItems: "center",
+        justifyContent: "center",
         flexDirection: "column",
         padding: "0px !important",
       }}
@@ -51,17 +49,15 @@ const UserList = () => {
         data.pages.map((page, pageIdx) => (
           <Box key={pageIdx} sx={{ width: "100%", padding: 0, margin: 0 }}>
             {page.users.map((user) => (
-              <Card
-                key={user.id}
-                variant="outlined"
-                sx={{}}
-              >
-                <Typography gutterBottom variant="h7" component="div">
-                  {user.name}
-                </Typography>
-                <Typography color="text.secondary" variant="body2">
-                  {user.email}
-                </Typography>
+              <Card key={user.id} variant="outlined" sx={{ width: "100%" }}>
+                <Box sx={{ p: 2 }}>
+                  <Typography gutterBottom variant="h7" component="div">
+                    {user.name}
+                  </Typography>
+                  <Typography color="text.secondary" variant="body2">
+                    {user.email}
+                  </Typography>
+                </Box>
               </Card>
             ))}
           </Box>
@@ -70,6 +66,7 @@ const UserList = () => {
         <Alert severity="info">No users available</Alert>
       )}
       <div ref={ref} />
+      {isFetchingNextPage && <CircularProgress />}
     </Container>
   );
 };

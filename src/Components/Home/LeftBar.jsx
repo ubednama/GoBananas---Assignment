@@ -1,8 +1,8 @@
-import { Box, Container, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Container, Typography } from "@mui/material";
+import React from "react";
 
-const LeftBar = () => {
-  const menu = ["Posts", "Albums", "Photos", "Users", "ToDos"]
+const LeftBar = ({ setView }) => {
+  const menu = ["Posts", "Albums", "Photos", "Users", "ToDos"];
   return (
     <Container
       sx={{
@@ -14,18 +14,25 @@ const LeftBar = () => {
       }}
     >
       <Typography variant="h5">JSON Placeholder</Typography>
-      {menu.map((items) => (
+      {menu.map((item, index) => (
         <Box
+          key={index}
+          onClick={() => setView(item)}
           sx={{
-            ":hover": { bgcolor: "grey", cursor: "pointer", borderRadius: 2, py: 1 },
-            px: 3,
+            ":hover": {
+              bgcolor: "grey",
+              cursor: "pointer",
+              borderRadius: 2,
+              py: 1,
+            },
+            px: 3, py: '1px',
           }}
         >
-          {items}
+          {item}
         </Box>
       ))}
     </Container>
   );
-}
+};
 
-export default LeftBar
+export default LeftBar;

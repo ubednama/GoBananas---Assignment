@@ -1,5 +1,5 @@
-import React, { useState} from "react";
-import {Container, Button, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Container, Button, Typography, Box } from "@mui/material";
 import UserList from "../Components/UserList";
 import AlbumList from "../Components/AlbumList";
 import PhotoList from "../Components/PhotoList";
@@ -7,9 +7,9 @@ import TodoList from "../Components/TodoList";
 import PostView from "../Components/PostView";
 import PostList from "../Components/PostList";
 
-const Feed = () => {
-  const [view, setView] = useState("Posts");
+const Feed = ({ view, setView }) => {
   const [selectedPostId, setSelectedPostId] = useState(null);
+  const menu = ["Posts", "Albums", "Photos", "Users", "ToDos"];
 
   const handleBack = () => {
     setView("Posts");
@@ -19,33 +19,41 @@ const Feed = () => {
   return (
     <Container
       sx={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-        width: { xs: 1 },
-        padding: "0px !Important",
+        overflowY: "auto",
+        p: "0px !Important",
+        width: {xs: "100vw"},
         height: "100vh",
       }}
     >
-      <Container sx={{ display: { sm: "none" } }}>
-        <Button variant="contained" onClick={() => setView("Users")}>
-          Users
-        </Button>
-        <Button variant="contained" onClick={() => setView("Albums")}>
-          Albums
-        </Button>
-        <Button variant="contained" onClick={() => setView("Photos")}>
-          Photos
-        </Button>
-        <Button variant="contained" onClick={() => setView("ToDos")}>
-          Todos
-        </Button>
-        <Button variant="contained" onClick={() => setView("Posts")}>
-          All Posts
-        </Button>
+      <Container
+        sx={{
+          display: { xs: "flex", sm: "none" },
+          justifyContent: "space-between",
+        }}
+      >
+        {menu.map((item, index) => (
+          <Box
+            key={index}
+            onClick={() => setView(item)}
+            sx={{
+              ":hover": {
+                bgcolor: "grey",
+                cursor: "pointer",
+                borderRadius: 2,
+                py: 1,
+                px: 2,
+              },
+              py: "1px",
+            }}
+          >
+            {item}
+          </Box>
+        ))}
       </Container>
       <Typography>{view}</Typography>
-      <Container sx={{ overflowY: "auto", p: "0px !Important" }}>
+      <Container
+        sx={{ overflowY: "auto", p: "0px !Important"}}
+      >
         {view === "Posts" && selectedPostId && (
           <PostView postId={selectedPostId} onBack={handleBack} />
         )}

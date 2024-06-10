@@ -9,6 +9,7 @@ import {
   Card,
   Typography,
   CardMedia,
+  Box,
 } from "@mui/material";
 
 const PhotoList = () => {
@@ -35,22 +36,19 @@ const PhotoList = () => {
 
   return (
     <Container
-      sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}
+      sx={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", width: "100%"}}
     >
-      Photos
-      {error ? <Alert severity="error">{error}</Alert> : ""}
-      {status === "loading" ? (
-        <CircularProgress />
-      ) : status === "error" ? (
-        <Alert severity="error">{error}</Alert>
-      ) : data?.pages?.length > 0 ? (
+      {error && <Alert severity="error">{error}</Alert>}
+      {status === "loading" && <CircularProgress />}
+      {status === "error" && <Alert severity="error">{error}</Alert>}
+      {data?.pages?.length > 0 ? (
         data.pages.map((page, pageIdx) => (
-          <div key={pageIdx}>
+          <Box key={pageIdx} sx={{ width: "100%", mb: 2 }}>
             {page.photos.map((photo) => (
               <Card
                 key={photo.id}
                 variant="outlined"
-                sx={{ maxWidth: 360, mb: 2 }}
+                sx={{}}
               >
                 <CardMedia
                   component="img"
@@ -58,17 +56,18 @@ const PhotoList = () => {
                   image={photo.thumbnailUrl}
                   alt={photo.title}
                 />
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h6" component="div">
                   {photo.title}
                 </Typography>
               </Card>
             ))}
-          </div>
+          </Box>
         ))
       ) : (
         <Alert severity="info">No photos available</Alert>
       )}
       <div ref={ref} />
+      {isFetchingNextPage && <CircularProgress sx={{ mt: 2 }} />}
     </Container>
   );
 };

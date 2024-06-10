@@ -8,6 +8,7 @@ import {
   Container,
   Card,
   Typography,
+  Box,
 } from "@mui/material";
 
 const TodoList = () => {
@@ -34,7 +35,14 @@ const TodoList = () => {
 
   return (
     <Container
-      sx={{ display: "flex", alignItems: "center", flexDirection: "column", p: "0px !important" }}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+        p: "0px !important",
+        width: "100%"
+      }}
     >
       {error ? <Alert severity="error">{error}</Alert> : ""}
       {status === "loading" ? (
@@ -43,20 +51,21 @@ const TodoList = () => {
         <Alert severity="error">{error}</Alert>
       ) : data?.pages?.length > 0 ? (
         data.pages.map((page, pageIdx) => (
-          <div key={pageIdx}>
+          <div key={pageIdx} style={{ width: "100%" }}>
             {page.todos.map((todo) => (
-              <Card
-                key={todo.id}
-                variant="outlined"
-                sx={{}}
-              >
-                <Typography gutterBottom variant="h7" component="div">
-                  {todo.title}
-                </Typography>
-                <Typography color="text.secondary" variant="body2">
-                  {todo.completed ? "Completed" : "Pending"}
-                </Typography>
-              </Card>
+              <Box key={todo.id} sx={{ width: "100%" }}>
+                <Card
+                  variant="outlined"
+                  sx={{ width: "100%"}}
+                >
+                  <Typography gutterBottom variant="h7" component="div">
+                    {todo.title}
+                  </Typography>
+                  <Typography color="text.secondary" variant="body2">
+                    {todo.completed ? "Completed" : "Pending"}
+                  </Typography>
+                </Card>
+              </Box>
             ))}
           </div>
         ))
@@ -64,6 +73,7 @@ const TodoList = () => {
         <Alert severity="info">No todos available</Alert>
       )}
       <div ref={ref} />
+      {isFetchingNextPage && <CircularProgress />}
     </Container>
   );
 };
