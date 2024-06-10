@@ -8,6 +8,7 @@ import {
   Container,
   Card,
   Typography,
+  Box,
 } from "@mui/material";
 
 const UserList = () => {
@@ -38,7 +39,7 @@ const UserList = () => {
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
-        p: "0px !important",
+        padding: "0px !important",
       }}
     >
       {error ? <Alert severity="error">{error}</Alert> : ""}
@@ -48,9 +49,13 @@ const UserList = () => {
         <Alert severity="error">{error}</Alert>
       ) : data?.pages?.length > 0 ? (
         data.pages.map((page, pageIdx) => (
-          <div key={pageIdx}>
+          <Box key={pageIdx} sx={{ width: "100%", padding: 0, margin: 0 }}>
             {page.users.map((user) => (
-              <Card key={user.id} variant="outlined" sx={{}}>
+              <Card
+                key={user.id}
+                variant="outlined"
+                sx={{}}
+              >
                 <Typography gutterBottom variant="h7" component="div">
                   {user.name}
                 </Typography>
@@ -59,7 +64,7 @@ const UserList = () => {
                 </Typography>
               </Card>
             ))}
-          </div>
+          </Box>
         ))
       ) : (
         <Alert severity="info">No users available</Alert>

@@ -35,7 +35,7 @@ const PostList = () => {
 
   return (
     <Container
-      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      sx={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "0px !Important" }}
     >
       {posts.length > 0 ? (
         posts.map((post) => (

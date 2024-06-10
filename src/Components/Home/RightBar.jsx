@@ -11,6 +11,7 @@ const RightBar = () => {
         display: "flex",
         flexDirection: "column",
         padding: "0px !important",
+        ml: 2,
         mt: 1,
         height: "80vh",
         maxHeight: "800px",
@@ -34,6 +35,7 @@ const RightBar = () => {
             borderTop: "1px solid",
             borderColor: grey["700"],
             height: "100%",
+            px: 1,
           }}
         >
           <UserList />
@@ -56,6 +58,7 @@ const RightBar = () => {
             borderTop: "1px solid",
             borderColor: grey["700"],
             height: "100%",
+            px: 1,
           }}
         >
           <TodoList />

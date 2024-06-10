@@ -1,8 +1,8 @@
-import { Container, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import React from 'react'
 
 const LeftBar = () => {
-  const menu = ["Posts", "Albums", "Photos", "ToDos"]
+  const menu = ["Posts", "Albums", "Photos", "Users", "ToDos"]
   return (
     <Container
       sx={{
@@ -13,9 +13,16 @@ const LeftBar = () => {
         textAlign: "right",
       }}
     >
-      <Typography variant="h4">JSONPlaceholder</Typography>
+      <Typography variant="h5">JSON Placeholder</Typography>
       {menu.map((items) => (
-        <div>{items}</div>
+        <Box
+          sx={{
+            ":hover": { bgcolor: "grey", cursor: "pointer", borderRadius: 2, py: 1 },
+            px: 3,
+          }}
+        >
+          {items}
+        </Box>
       ))}
     </Container>
   );

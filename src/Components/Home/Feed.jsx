@@ -18,7 +18,14 @@ const Feed = () => {
 
   return (
     <Container
-      sx={{ display: "flex", alignItems: "center", flexDirection: "column", width: {xs: 1}}}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+        width: { xs: 1 },
+        padding: "0px !Important",
+        height: "100vh",
+      }}
     >
       <Container sx={{ display: { sm: "none" } }}>
         <Button variant="contained" onClick={() => setView("Users")}>
@@ -38,14 +45,16 @@ const Feed = () => {
         </Button>
       </Container>
       <Typography>{view}</Typography>
-      {view === "Posts" && selectedPostId && (
-        <PostView postId={selectedPostId} onBack={handleBack} />
-      )}
-      {view === "Users" && <UserList />}
-      {view === "Albums" && <AlbumList />}
-      {view === "Photos" && <PhotoList />}
-      {view === "ToDos" && <TodoList />}
-      {view === "Posts" && <PostList />}
+      <Container sx={{ overflowY: "auto", p: "0px !Important" }}>
+        {view === "Posts" && selectedPostId && (
+          <PostView postId={selectedPostId} onBack={handleBack} />
+        )}
+        {view === "Users" && <UserList />}
+        {view === "Albums" && <AlbumList />}
+        {view === "Photos" && <PhotoList />}
+        {view === "ToDos" && <TodoList />}
+        {view === "Posts" && <PostList />}
+      </Container>
     </Container>
   );
 };
