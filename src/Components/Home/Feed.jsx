@@ -21,13 +21,13 @@ const Feed = ({ view, setView }) => {
       sx={{
         overflowY: "auto",
         p: "0px !Important",
-        width: {xs: "100vw"},
+        width: { xs: "100vw", sm: "100%" },
         height: "100vh",
       }}
     >
       <Container
         sx={{
-          display: { xs: "flex", sm: "none" },
+          display: { xs: "flex", sm: "none" }, mt: 1,
           justifyContent: "space-between",
         }}
       >
@@ -50,10 +50,10 @@ const Feed = ({ view, setView }) => {
           </Box>
         ))}
       </Container>
-      <Typography>{view}</Typography>
-      <Container
-        sx={{ overflowY: "auto", p: "0px !Important"}}
-      >
+      <Typography variant="h5" sx={{ mt: 2, color: "text.primary", textAlign: "center" }}>
+        {view}
+      </Typography>
+      <Container sx={{ overflowY: "auto", p: "0px !Important" }}>
         {view === "Posts" && selectedPostId && (
           <PostView postId={selectedPostId} onBack={handleBack} />
         )}
