@@ -51,7 +51,7 @@ const AlbumList = () => {
         data.pages.map((page, pageIdx) => (
           <Box key={pageIdx} sx={{ width: "100%" }}>
             {page.albums.map((album) => (
-              <Card key={album.id} variant="outlined" sx={{ width: "100%" }}>
+              <Card key={album.id} variant="outlined" sx={{ width: "100%", p: 2 }}>
                 <Typography gutterBottom variant="h6" component="div">
                   {album.title}
                 </Typography>

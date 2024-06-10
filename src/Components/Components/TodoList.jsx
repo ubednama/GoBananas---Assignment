@@ -53,10 +53,10 @@ const TodoList = () => {
         data.pages.map((page, pageIdx) => (
           <div key={pageIdx} style={{ width: "100%" }}>
             {page.todos.map((todo) => (
-              <Box key={todo.id} sx={{ width: "100%" }}>
+              <Box key={todo.id} >
                 <Card
                   variant="outlined"
-                  sx={{ width: "100%"}}
+                  sx={{p: 2}}
                 >
                   <Typography gutterBottom variant="h7" component="div">
                     {todo.title}

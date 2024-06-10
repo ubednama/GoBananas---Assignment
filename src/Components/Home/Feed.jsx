@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Button, Typography, Box } from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
 import UserList from "../Components/UserList";
 import AlbumList from "../Components/AlbumList";
 import PhotoList from "../Components/PhotoList";
@@ -19,15 +19,18 @@ const Feed = ({ view, setView }) => {
   return (
     <Container
       sx={{
-        overflowY: "auto",
+        display: "flex",
+        flexDirection: "column",
         p: "0px !Important",
         width: { xs: "100vw", sm: "100%" },
         height: "100vh",
+        overflow: "hidden",
       }}
     >
       <Container
         sx={{
-          display: { xs: "flex", sm: "none" }, mt: 1,
+          display: { xs: "flex", sm: "none" },
+          mt: 1,
           justifyContent: "space-between",
         }}
       >
@@ -50,10 +53,26 @@ const Feed = ({ view, setView }) => {
           </Box>
         ))}
       </Container>
-      <Typography variant="h5" sx={{ mt: 2, color: "text.primary", textAlign: "center" }}>
+      <Typography
+        variant="h5"
+        sx={{
+          mt: 2,
+          color: "text.primary",
+          textAlign: "center",
+          position: "sticky",
+          top: 0,
+          bgcolor: "background.paper",
+          zIndex: 1,
+        }}
+      >
         {view}
       </Typography>
-      <Container sx={{ overflowY: "auto", p: "0px !Important" }}>
+      <Container
+        sx={{
+          overflowY: "auto",
+          p: "0px !Important",
+        }}
+      >
         {view === "Posts" && selectedPostId && (
           <PostView postId={selectedPostId} onBack={handleBack} />
         )}

@@ -47,11 +47,15 @@ const UserList = () => {
         <Alert severity="error">{error}</Alert>
       ) : data?.pages?.length > 0 ? (
         data.pages.map((page, pageIdx) => (
-          <Box key={pageIdx} sx={{ width: "100%", padding: 0, margin: 0 }}>
+          <Box key={pageIdx} sx={{ width: "100%" }}>
             {page.users.map((user) => (
-              <Card key={user.id} variant="outlined" sx={{ width: "100%" }}>
+              <Card
+                key={user.id}
+                variant="outlined"
+                sx={{ width: "100%" }}
+              >
                 <Box sx={{ p: 2 }}>
-                  <Typography gutterBottom variant="h7" component="div">
+                  <Typography gutterBottom variant="subtitle1" component="div">
                     {user.name}
                   </Typography>
                   <Typography color="text.secondary" variant="body2">

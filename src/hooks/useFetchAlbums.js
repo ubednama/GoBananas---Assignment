@@ -10,10 +10,10 @@ const useFetchAlbums = () => {
             );
             const albums = res.data;
             const hasNextPage = albums.length === limit;
-            return { albums, hasNextPage }
+            return { albums, hasNextPage };
 
         } catch (error) {
-            return { albums: [], hasNextPage: false, error: error.message }
+            return { albums: [], hasNextPage: false, error: error.message };
         }
     };
 

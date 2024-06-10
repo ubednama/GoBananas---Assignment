@@ -48,7 +48,7 @@ const PhotoList = () => {
               <Card
                 key={photo.id}
                 variant="outlined"
-                sx={{}}
+                sx={{p: 2}}
               >
                 <CardMedia
                   component="img"
